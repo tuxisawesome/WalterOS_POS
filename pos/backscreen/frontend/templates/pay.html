@@ -1,0 +1,48 @@
+
+<!doctype html> 
+<html lang="en"> 
+  
+<head> 
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <title>Payment</title> 
+
+    <style>
+        html { 
+  background: url(static/bkg.jpg) no-repeat center center fixed; 
+  background-color: aqua;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#page-wrap { width: 400px; margin: 50px auto; padding: 20px; background: white; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
+	
+    </style>    
+</head> 
+  
+<body> 
+    <div id="page-wrap">
+    <h3 class="text-center py-1">You have been charged</h3>
+    <h1 class="text-center py-1">${{ cost }}</h1>
+    <p class="text-center py-1">For {{ whatfor }}</p>
+
+    <h2 class="text-center py-5">Please scan your membership card.</h2> 
+    <p class="text-center py-2">Make sure to highlight the box before scanning.</p>
+  
+    <div class="row"> 
+        <div class="col-md-4"></div> 
+        <div class="col-md-4"> 
+            <form action="{{ url_for('read_form')}}" method="post"> 
+                <label for="password" class="form-label">Pin</label> 
+                <input name="userPassword" maxlength=16 type="password" class="form-control" id="password"> 
+                <button type="submit" class="btn btn-primary">Submit</button> 
+            </form> 
+        </div> 
+        <div class="col-md-4"></div> 
+    </div> 
+  </div>
+
+</body> 
+  
+</html>
