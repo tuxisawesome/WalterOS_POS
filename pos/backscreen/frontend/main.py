@@ -31,8 +31,20 @@ def read_form():
         with open('cmd_list.txt','w') as eee:
             eee.write("")
             eee.close()
+        print("")
+        print("")
+        print("ORDER SUCCESS")
+        print("")
+        print("")
         return render_template('purchasecomplete.html')
     else:
+        print("")
+        print("!!!!!!!!!!!!")
+        print("ORDER FAILED")
+        print("!!!!!!!!!!!!")
+        print("")
+        print(f"Enterred Data: {data['userPassword']}")
+        print("")
         return render_template('purchasefailed.html')
 
 
@@ -47,7 +59,7 @@ def read_form():
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
 
-    shopname = "WalterOS POS"
+    shopname = "Castle"
     shopdesc = "Most advanced POS Ever!"
 
 
