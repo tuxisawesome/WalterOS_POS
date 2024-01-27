@@ -15,14 +15,19 @@ html {
   -o-background-size: cover;
   background-size: cover;
 }
-#page-wrap { width: 400px; margin: 50px auto; padding: 20px; background: white; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
-	
+#page-wrap { width: 400px; margin: 50px auto; padding: 20px; background: darkslategray; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
+.rcorners1 {
+  border-radius: 25px;
+  padding: 20px;
+
+  color:ghostwhite;
+}
     </style>
 
 </head> 
   
 <body> 
-    <div id="page-wrap">
+    <div id="page-wrap" class="rcorners1">
     <h1 class="text-center">{{ shopname }}</h1>
     <p class="text-center">{{ shopdesc }}</p>
     </div>

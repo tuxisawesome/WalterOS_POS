@@ -1,8 +1,8 @@
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
 from flask import Flask, render_template, request
-
-
+import payprocess
+from dbg import p
 
 
 #       SETTINGS
@@ -24,9 +24,29 @@ def read_form():
   
     # Get the form data as Python ImmutableDict datatype  
     data = request.form 
-  
+    pin = data['userPassword']
+    amount = ""
+    with open('paymount','r') as pm:
+        amount = pm.readline()
+        pm.close()
+    with open('paymount','w') as pm2:
+        pm2.write("")
+        pm2.close()
+    p(f"{pin},{amount}")
+    ret = payprocess.processpay(pin,amount)
+    print(ret)
+    print("")
     ## Return the extracted information  
-    if data['userPassword'] == "123123":
+    if ret == "True":
+        print("")
+        print("!!!!!!!!!!!!")
+        print("ORDER FAILED")
+        print("!!!!!!!!!!!!")
+        print("")
+        print(f"Enterred Data: {data['userPassword']}")
+        print("")
+        return render_template('purchasefailed.html')
+    else:
         #purchasesuccess
         with open('cmd_list.txt','w') as eee:
             eee.write("")
@@ -36,16 +56,27 @@ def read_form():
         print("ORDER SUCCESS")
         print("")
         print("")
-        return render_template('purchasecomplete.html')
-    else:
-        print("")
-        print("!!!!!!!!!!!!")
-        print("ORDER FAILED")
-        print("!!!!!!!!!!!!")
-        print("")
-        print(f"Enterred Data: {data['userPassword']}")
-        print("")
-        return render_template('purchasefailed.html')
+        return render_template('purchasecomplete.html',acc=ret)
+
+
+
+
+@app.route('/api/getbal', methods=['POST']) 
+def get_balance(): 
+  
+    # Get the form data as Python ImmutableDict datatype  
+    data = request.form 
+    pin = data['userPassword']
+    p(f"{pin}")
+    ret = payprocess.getbal(pin)
+    print(ret)
+    print("")
+    with open('cmd_list.txt', 'r') as fin:
+        data = fin.read().splitlines(True)
+    with open('cmd_list.txt', 'w') as fout:
+        fout.writelines(data[1:])
+    return render_template('returnbal.html',acc=ret)
+
 
 
 
@@ -95,7 +126,11 @@ def hello_world():
                     data = fin.read().splitlines(True)
                 with open('cmd_list.txt', 'w') as fout:
                     fout.writelines(data[1:])
+                with open('paymount','w') as pm:
+                    pm.write(cmd.split('`')[1])
                 return render_template('pay.html',cost=cmd.split('`')[1],whatfor=cmd.split('`')[2])
+            elif cmd.split('`')[0] == "getbal":
+                return render_template('requestcard.html')
             else:
                 return render_template('error.html',cmd_list=cmd_list)
 	
