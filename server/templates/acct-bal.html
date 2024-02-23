@@ -87,16 +87,30 @@ div.content {
 
 <ul class="sidenav">
 	<h1> Castle Bank</h1>
-  <li><a class="active" href="/">Home</a></li>
-  <li><a href="/acct">Log in to account</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a href="#" onclick="localStorage.clear(); window.location.href = '/logout'">Log out</a></li>
+
 </ul>
 
 <div class="content">
+  <h1 id="name">Loading</h1>
   <h2>Castle Bank</h2>
-  <p>Welcome to The Castle Bank, compatible with Castle-POS.</p>
-  <p>Please click the links on the sidebar to navigate to different pages and view our services.</p>
+  <h4 id="amount" class="active">Loading</h4>
 </div>
-
+<script>
+    document.getElementById("name").innerHTML = localStorage.getItem("acctname");
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/api/bal/" + localStorage.getItem("pin"));
+    xhr.send();
+    xhr.responseType = "text";
+    xhr.onload = () => {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        document.getElementById("amount").innerHTML = "Current Balance: " + xhr.responseText
+    } else { 
+        console.log(`Error: ${xhr.status}`);
+    }
+    };
+</script>
 </body>
 </html>
 

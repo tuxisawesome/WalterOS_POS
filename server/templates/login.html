@@ -87,14 +87,66 @@ div.content {
 
 <ul class="sidenav">
 	<h1> Castle Bank</h1>
-  <li><a class="active" href="/">Home</a></li>
-  <li><a href="/acct">Log in to account</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a class="active" href="/acct">Log in to account</a></li>
 </ul>
 
 <div class="content">
   <h2>Castle Bank</h2>
-  <p>Welcome to The Castle Bank, compatible with Castle-POS.</p>
-  <p>Please click the links on the sidebar to navigate to different pages and view our services.</p>
+
+<script>
+function validateForm() {
+  let x = document.getElementById("fname").value
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }else {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "/api/name/" + x);
+    xhr.send();
+    xhr.responseType = "text";
+    xhr.onload = () => {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        if (xhr.responseText === "null") {
+          document.getElementById("error").innerHTML = "Error: Key not recognised."
+        } else {
+          const xhr2 = new XMLHttpRequest();
+          xhr2.open("GET", "/api/bal/" + x);
+          xhr2.send();
+          xhr2.responseType = "text";
+          xhr2.onload = () => {
+          if (xhr2.readyState == 4 && xhr2.status == 200) {
+              if (xhr2.responseText === "null") {
+                document.getElementById("error").innerHTML = "Error: Key not recognised."
+              } else {
+                localStorage.setItem('pin',x)
+                localStorage.setItem('acctname',xhr.responseText)
+                console.log(x)
+                console.log(xhr2.responseText)
+                window.location.href = "/acct-bal";
+              }
+              
+          } else { 
+              console.log(`Error: ${xhr.status}`);
+          }
+          };
+        }
+        
+    } else { 
+        console.log(`Error: ${xhr.status}`);
+    }
+    };
+  }
+}
+</script>
+<h1 id="error" style="color: red;"></h1>
+
+<h2>Log in to your account.</h2>
+
+  ID: <input type="text" id="fname">
+  <input type="submit" value="Submit" onclick="validateForm()">
+
+
 </div>
 
 </body>

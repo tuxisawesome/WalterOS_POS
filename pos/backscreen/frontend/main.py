@@ -37,7 +37,7 @@ def read_form():
     print(ret)
     print("")
     ## Return the extracted information  
-    if ret == "True":
+    if not ret == "True":
         print("")
         print("!!!!!!!!!!!!")
         print("ORDER FAILED")

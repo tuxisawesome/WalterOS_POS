@@ -87,14 +87,22 @@ div.content {
 
 <ul class="sidenav">
 	<h1> Castle Bank</h1>
-  <li><a class="active" href="/">Home</a></li>
-  <li><a href="/acct">Log in to account</a></li>
+  <li><a href="/">Home</a></li>
+  <li><a class="active" href="/acct">Log in to account</a></li>
 </ul>
 
 <div class="content">
   <h2>Castle Bank</h2>
-  <p>Welcome to The Castle Bank, compatible with Castle-POS.</p>
-  <p>Please click the links on the sidebar to navigate to different pages and view our services.</p>
+  <p>Please wait...</p>
+  <p>We are transferring you...</p>
+  <span class="loader"></span>
+  <script>
+    if (localStorage.getItem("pin") === null || localStorage.getItem("acctname") === null) {
+      window.location.href = "/login"
+    } else {
+      window.location.href = "/acct-bal"
+    }
+  </script>
 </div>
 
 </body>
