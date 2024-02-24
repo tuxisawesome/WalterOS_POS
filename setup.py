@@ -31,7 +31,7 @@ def serversetup():
     print("")
     print("Are you planing to also set up as a client?")
     x = input("[y/n] >>> ")
-    if x.lower == "y":
+    if x == "y":
         clientsetup()
     with open(f"firstrun.txt", 'w') as fr:
         fr.write("serv")
