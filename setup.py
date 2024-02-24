@@ -4,7 +4,7 @@ def clientsetup():
     print("")
     print("What is the IP of the server? [Leave blank for 127.0.0.1]")
     x = input(">>> ")
-    with open(f"frontend/config/payproc.ip.config", 'w') as w:
+    with open(f"pos/backscreen/frontend/config/payproc.ip.config", 'w') as w:
         if x == "":
             w.write("127.0.0.1")
             print("127.0.0.1")
@@ -15,7 +15,7 @@ def clientsetup():
     print("")
     print("What is the port of the server? [Leave blank for 6543]")
     x = input(">>> ")
-    with open(f"frontend/config/payproc.port.config", 'w') as w:
+    with open(f"pos/backscreen/frontend/config/payproc.port.config", 'w') as w:
         if x == "":
             w.write("6543")
             print("6543")
