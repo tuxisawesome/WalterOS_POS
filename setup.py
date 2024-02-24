@@ -1,7 +1,4 @@
 import os
-import pos.backscreen.back as back
-import pos.backscreen.regedit as regedit
-
 
 def clientsetup():
     print("")
