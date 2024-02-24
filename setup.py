@@ -54,3 +54,5 @@ def firstrun():
         clientsetup()
     else:
         firstrun()
+
+firstrun()
