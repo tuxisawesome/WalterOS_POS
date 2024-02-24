@@ -1,0 +1,60 @@
+import os
+import pos.backscreen.back as back
+import pos.backscreen.regedit as regedit
+
+
+def clientsetup():
+    print("")
+    print("What is the IP of the server? [Leave blank for 127.0.0.1]")
+    x = input(">>> ")
+    with open(f"frontend/config/payproc.ip.config", 'w') as w:
+        if x == "":
+            w.write("127.0.0.1")
+            print("127.0.0.1")
+        else:
+            w.write(x)
+            print(x)
+        w.close()
+    print("")
+    print("What is the port of the server? [Leave blank for 6543]")
+    x = input(">>> ")
+    with open(f"frontend/config/payproc.port.config", 'w') as w:
+        if x == "":
+            w.write("6543")
+            print("6543")
+        else:
+            w.write(x)
+            print(x)
+        w.close()
+    print("")
+    print("")
+    print("Thank you for using WalterOS POS.")
+    print("This setup has been completed.")
+def serversetup():
+    print("")
+    print("Are you planing to also set up as a client?")
+    x = input("[y/n] >>> ")
+    if x.lower == "y":
+        clientsetup()
+    with open(f"firstrun.txt", 'w') as fr:
+        fr.write("serv")
+    print("This part of setup is complete.")
+
+def firstrun():
+    print("")
+    back.brand(False)
+    print("WalterOS POS Setup")
+    print("Are you setting this computer up as a server or a client?")
+    print("If both, select 'server'.")
+    print("Type [S/s/Server] for server or [C/c/Client] for client.")
+    x = input(">>> ")
+
+
+    # Check if server or client
+    if x.lower == "server" or x.lower == "s":
+        serversetup()
+    elif x.lower == "client" or x.lower == "c":
+        os.rmdir("server")
+        clientsetup()
+    else:
+        firstrun()
