@@ -39,6 +39,7 @@ def serversetup():
 
 def firstrun():
     print("")
+    os.system("pip install flask")
     print("WalterOS POS Setup")
     print("Are you setting this computer up as a server or a client?")
     print("If both, select 'server'.")
