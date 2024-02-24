@@ -47,9 +47,9 @@ def firstrun():
 
 
     # Check if server or client
-    if x.lower == "server" or x.lower == "s":
+    if x == "server" or x == "s":
         serversetup()
-    elif x.lower == "client" or x.lower == "c":
+    elif x == "client" or x == "c":
         os.rmdir("server")
         clientsetup()
     else:
