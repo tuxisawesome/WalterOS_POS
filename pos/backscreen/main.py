@@ -1,2 +1,8 @@
 import back
-back.guided_mode()
+import regedit
+
+if regedit.readkey("system.defaultmode") == "text" :
+    back.textmode()
+else:
+    back.guided_mode()
+

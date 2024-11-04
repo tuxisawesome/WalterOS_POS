@@ -97,6 +97,10 @@ def sub(key,amnt):
     x = subbal(key,amnt)
     return x
 
+@app.route('/api/sub/<key>')
+def brokensub():
+    return "True"
+
 @app.route('/sw.js')
 def serve_sw():
     return send_file('sw.js', mimetype='application/javascript')

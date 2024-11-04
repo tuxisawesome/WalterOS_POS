@@ -39,11 +39,18 @@ def read_form():
     ## Return the extracted information  
     if not ret == "True":
         print("")
+        print(f"Enterred Data: {data['userPassword']}")
+        print("")
+        x = input("is this correct [y,n]? ")
+        if x == "y" or "Y":
+            with open('cmd_list.txt','w') as eee:
+                eee.write("")
+                eee.close()
+            return render_template('purchasecomplete.html',acc=ret)
+        print("")
         print("!!!!!!!!!!!!")
         print("ORDER FAILED")
         print("!!!!!!!!!!!!")
-        print("")
-        print(f"Enterred Data: {data['userPassword']}")
         print("")
         return render_template('purchasefailed.html')
     else:

@@ -26,3 +26,7 @@ def regedit():
         else:
             print("Tip: You must end commands with semicolons.")
     return
+
+def readkey(key):
+    with open(f"frontend/config/{key}.config", 'r') as r:
+        return r.readline()

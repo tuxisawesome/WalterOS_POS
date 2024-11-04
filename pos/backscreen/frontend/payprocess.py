@@ -12,7 +12,7 @@ def getremoteip():
         pppc.close()
     return [ppip,ppp]
 
-def processpay(pwd,amount):
+def processpay(pwd,amount=0.0):
     pp = getremoteip()
     ppp = pp[1]
     ppip = pp[0]
