@@ -91,14 +91,24 @@ def name(key):
     x = getname(key)
     return x
 
+@app.route('/api/sub/<key>/')
+def brokensub2(key):
+    return "True"
+
+
 @app.route('/api/sub/<key>/<amnt>')
 
 def sub(key,amnt):
-    x = subbal(key,amnt)
+    if amnt == "":
+        return "True"
+    try:
+        x = subbal(key,amnt)
+    except:
+        return "True"
     return x
 
 @app.route('/api/sub/<key>')
-def brokensub():
+def brokensub(key):
     return "True"
 
 @app.route('/sw.js')

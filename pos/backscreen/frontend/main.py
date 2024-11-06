@@ -97,8 +97,8 @@ def get_balance():
 # ‘/’ URL is bound with hello_world() function.
 def hello_world():
 
-    shopname = "Castle"
-    shopdesc = "Most advanced POS Ever!"
+    shopname = "The Castle Shop"
+    shopdesc = "Get anything you need here!"
 
 
 

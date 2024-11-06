@@ -58,23 +58,29 @@ def other_options():
 def guided_mode():
     global mores
     mores = True
+    
     while mores:
 
         brand()
-        uname = input("Swipe userid card: ")
-        pwd = input("Pass 2 (press enter after): ")
+        if regedit.readkey("users.autologin") == "true":
+            pass
+        else:
+            uname = input("Swipe card or type username: ")
+            pwd = input("Enter password: ")
 
-        if uname == regedit.readkey("users.admin.uid"):
-            if pwd == regedit.readkey("users.admin.pwd"):
-                pass
+            if uname == regedit.readkey("users.admin.uid"):
+                if pwd == regedit.readkey("users.admin.pwd"):
+                    pass
+                else:
+                    print("Card read error")
+                    input("Press enter to try again")
+                    continue
             else:
                 print("Card read error")
                 input("Press enter to try again")
                 continue
-        else:
-            print("Card read error")
-            input("Press enter to try again")
-            continue
+        
+        brand(True)
         print("Please select: 0 [Other options] or anything else for new order")
         cmd = input("? ")
         if cmd == "O" or cmd == "0" or cmd == "o":
@@ -190,10 +196,8 @@ def guided_mode():
                             with open('frontend/cmd_list.txt','a') as cmlist:
                                 cmlist.write(totals)
                                 cmlist.close()
-
-                            with open('frontend/paymount','w') as pmount:
-                                pmount.write(howmuch)
-                                pmount.close()
+                            
+                            
                             print("Was checkout successful? Type N or n for no or anything for yes.")
                             z = input("? ")
                             if z == "N" or z == "n":

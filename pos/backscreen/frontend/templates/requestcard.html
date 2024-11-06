@@ -29,22 +29,26 @@
 <body> 
     <div id="page-wrap" class="rcorners1">
     <h1>Please give permission to access your membership.</h1>
-    <h2 class="text-center py-5">Please scan your membership card.</h2> 
-    <p class="text-center py-2">Make sure to highlight the box before scanning.</p>
+    <h2 class="text-center py-5">Please swipe your membership card.</h2> 
+    <p class="text-center py-2">Make sure to highlight the box before swipeing.</p>
   
     <div class="row"> 
         <div class="col-md-4"></div> 
         <div class="col-md-4"> 
             <form action="{{ url_for('get_balance')}}" method="post"> 
                 <label for="password" class="form-label">Pin</label> 
-                <input name="userPassword" maxlength=20 type="password" class="form-control" id="password"> 
+                <input name="userPassword" maxlength=20 type="password" class="form-control" id="password" autofocus> 
                 <button type="submit" class="btn btn-primary">Submit</button> 
             </form> 
         </div> 
         <div class="col-md-4"></div> 
     </div> 
   </div>
-
+<script>
+    var input = document.getElementById('password');
+input.focus();
+input.select();
+</script>
 </body> 
   
 </html>
