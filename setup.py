@@ -24,6 +24,28 @@ def clientsetup():
             print(x)
         w.close()
     print("")
+    print("What is the admin username? [Leave blank for 'admin']")
+    x = input(">>> ")
+    with open(f"pos/backscreen/frontend/config/users.admin.uid.config", 'w') as w:
+        if x == "":
+            w.write("admin")
+            print("admin")
+        else:
+            w.write(x)
+            print(x)
+        w.close()
+    print("")
+    print("What is the admin password? [Leave blank for 1234]")
+    x = input(">>> ")
+    with open(f"pos/backscreen/frontend/config/users.admin.pwd.config", 'w') as w:
+        if x == "":
+            w.write("1234")
+            print("1234")
+        else:
+            w.write(x)
+            print(x)
+        w.close()
+    print("")
     print("")
     print("Thank you for using WalterOS POS.")
     print("This setup has been completed.")
