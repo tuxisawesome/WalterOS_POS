@@ -59,8 +59,9 @@ def regverify():
     if readkey("payproc.ip") == "null" or readkey("payproc.port") == "null":
         return "!!! Error in payproc.ip or payproc.port: Files not found"
     
-    if readkey("users.admin.pwd") == "null" or readkey("users.admin.uid") == "null" and readkey("users.autologin") == "false":
-        return "!!! Error in users.admin.pwd or users.admin.uid: Admin user is not set while user authentication is enabled."
+    if readkey("users.admin.pwd") == "null" or readkey("users.admin.uid") == "null":
+        if readkey("users.autologin") == "false":
+            return "!!! Error in users.admin.pwd or users.admin.uid: Admin user is not set while user authentication is enabled."
 
     return "ok"
     
