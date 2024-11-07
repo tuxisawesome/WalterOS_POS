@@ -24,27 +24,75 @@ def clientsetup():
             print(x)
         w.close()
     print("")
-    print("What is the admin username? [Leave blank for 'admin']")
+    print("Do you want to enable autologin? (Y/N) [Default is N]")
     x = input(">>> ")
-    with open(f"pos/backscreen/frontend/config/users.admin.uid.config", 'w') as w:
+    with open(f"pos/backscreen/frontend/config/users.autologin.config", 'w') as w:
         if x == "":
-            w.write("admin")
-            print("admin")
+            w.write("false")
+            print("false")
+        elif x == "Y" or x == "y":
+            w.write("true")
+            print("true")
         else:
-            w.write(x)
-            print(x)
+            w.write("false")
+            print("false")
+
         w.close()
-    print("")
-    print("What is the admin password? [Leave blank for 1234]")
-    x = input(">>> ")
-    with open(f"pos/backscreen/frontend/config/users.admin.pwd.config", 'w') as w:
-        if x == "":
-            w.write("1234")
-            print("1234")
+    if x == "y" or x == "Y":
+        print("")
+        print("Do you want an admin user? (Y/N) [Default is Y]")
+        x = input(">>> ")
+        if x == "n" or x == "N":
+            print("")
+            print("*   User creation skipped.")
+            print("")
         else:
-            w.write(x)
-            print(x)
-        w.close()
+            print("")
+            print("What is the admin username? [Leave blank for 'admin']")
+            x = input(">>> ")
+            with open(f"pos/backscreen/frontend/config/users.admin.uid.config", 'w') as w:
+                if x == "":
+                    w.write("admin")
+                    print("admin")
+                else:
+                    w.write(x)
+                    print(x)
+                w.close()
+            print("")
+            print("What is the admin password? [Leave blank for 1234]")
+            x = input(">>> ")
+            with open(f"pos/backscreen/frontend/config/users.admin.pwd.config", 'w') as w:
+                if x == "":
+                    w.write("1234")
+                    print("1234")
+                else:
+                    w.write(x)
+                    print(x)
+                w.close()
+    else:
+        print("")
+        print("What is the admin username? [Leave blank for 'admin']")
+        x = input(">>> ")
+        with open(f"pos/backscreen/frontend/config/users.admin.uid.config", 'w') as w:
+            if x == "":
+                w.write("admin")
+                print("admin")
+            else:
+                w.write(x)
+                print(x)
+            w.close()
+        print("")
+        print("What is the admin password? [Leave blank for 1234]")
+        x = input(">>> ")
+        with open(f"pos/backscreen/frontend/config/users.admin.pwd.config", 'w') as w:
+            if x == "":
+                w.write("1234")
+                print("1234")
+            else:
+                w.write(x)
+                print(x)
+            w.close()
+        
     print("")
     print("")
     print("Thank you for using WalterOS POS.")
